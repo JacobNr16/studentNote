@@ -1,0 +1,23 @@
+<div *ngIf="!isLoggedIn; else show_dashboard" id="loginForm">
+  <header>
+    <img src="/assets/res/Logo.png" />
+  </header>
+
+  <form>
+    <div>
+      <img src="/assets/res/account_icon.png" height=32 width=32 />
+      <input type="text" name="identification" placeholder="Benutzername" align="top"><br/>
+    </div>
+    <div>
+      <img src="/assets/res/password_icon.png" height=32 width=32 />
+      <input type="password" name="password" placeholder="Passwort"><br/>
+    </div>
+    <input (click)="onLogin()" type="submit" value="Login">
+  </form>
+</div>
+
+<ng-template #show_dashboard>
+  <app-dashboard></app-dashboard>
+</ng-template>
+
+

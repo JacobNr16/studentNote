@@ -1,0 +1,41 @@
+<table>
+  <tr>
+    <th>Nachname</th>
+    <th>Vorname</th>
+    <th>Klasse</th>
+  </tr>
+  <tr *ngFor="let student of students">
+    <td>
+      {{ student.lastName }}
+      <button type="button"> bearbeiten </button>
+      <button type="button"> löschen </button>
+    </td>
+    <td>
+      {{ student.firstName }}
+      <button type="button"> bearbeiten </button>
+      <button type="button"> löschen </button>
+    </td>
+    <td>
+      9b
+      <button type="button"> bearbeiten </button>
+      <button type="button"> löschen </button>
+    </td>
+  </tr>
+</table>
+
+<div class="addEntity">
+  <table>
+    <tr>
+      <td>
+        <input type="text" name="nachname" placeholder="Nachname..." #lastName>
+      </td>
+      <td>
+        <input type="text" name="vorname" placeholder="Vorname..." #firstName>
+      </td>
+      <td>
+        <input type="text" name="klasse" placeholder="Klasse...">
+      </td>
+    </tr>
+  </table>
+  <button (click)="add(firstName.value, lastName.value)" type="button"> Hinzufügen </button>
+</div>

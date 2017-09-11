@@ -1,0 +1,215 @@
+
+/* Header generell */
+header {
+  padding: 20px;
+}
+
+header div {
+  margin: auto;
+  display: inline;
+}
+
+#loginForm {
+  padding: 12px 20px;
+  width: 30%;
+}
+
+#loginForm form div img, #loginForm form div input {
+  vertical-align: middle;
+}
+
+#loginForm form div {
+  margin: 4px;
+}
+
+#loginForm form > input {
+  font-size: 20px;
+  display: block;
+  margin: 5px;
+  width: 335px;
+  background-color: white;
+  border-radius: 4px;
+  border: 2px solid #ff3333;
+  cursor: pointer;
+}
+
+#loginForm form > input:hover {
+  transition-duration: 0.4s;
+  background-color: #ff3333;
+  color: white;
+}
+
+#loginForm form div input {
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 4px;
+  width: 300px;
+  height: 30px;
+  padding: 3px;
+  font-size: 17px;
+}
+
+/* Logo Dashboard */
+.logo {
+  float: left;
+  width: 554px;
+  height: 230;
+  margin-bottom: 30px;
+  border-left:1px solid #ffffff;
+  position: left;
+}
+/* Logout-Button */
+#logoutBox {
+  float: right;
+  width: 50px;
+}
+/* Navigationsleite*/
+header nav {
+  background-color: #333;
+  overflow: hidden;
+  margin: auto;
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/* Style der Links  */
+header nav a {
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  display: inline;
+}
+/* Veränderung der Farbe beim "berühren" */
+header nav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+/* Markieren des geklickten Links */
+header nav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+/* Anzeige der Nav-Elemente */
+header nav li {
+  display: inline;
+  list-style: none;
+  position: relative;
+}
+
+form div {
+  display: block;
+  margin: auto;
+}
+
+table {
+  margin: auto;
+  width: 70%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+td button {
+  visibility: hidden;
+  font-size: 15px;
+  float: right;
+  border-radius: 4px;
+  background-color: white;
+  border: 2px solid #ff3333;
+  margin: 0 1px;
+}
+
+td button:hover {
+  transition-duration: 0.4s;
+  background-color: #ff3333;
+  color: white;
+  cursor: pointer;
+}
+
+td:hover button {
+  visibility: visible;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+tr:not(:first-child):hover {
+  background-color: #BEBEBE;
+}
+
+tr:nth-child(even) {
+  background-color: #F0F0F0;
+}
+
+th {
+  background-color: #ff3333;
+  color: white;
+  padding: 15px;
+  font-size: 20px;
+}
+
+td {
+  padding: 7px 10px;
+  font-size: 20px;
+  text-align: left;
+}
+
+.addEntity {
+  margin-top: 50px;
+}
+
+.addEntity button {
+  font-size: 20px;
+  display: block;
+  border-radius: 4px;
+  margin: 5px auto;
+  background-color: white;
+  border: 2px solid #ff3333;
+}
+
+.addEntity button:hover {
+  transition-duration: 0.4s;
+  background-color: #ff3333;
+  color: white;
+  cursor: pointer;
+}
+
+.addEntity td input {
+  border: none;
+  outline: none;
+  font-size: 17px;
+  width: 100%;
+}
+
+.noteForm {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  width: 60%;
+  text-align: center;
+}
+
+
+.noteForm textarea {
+  display: inline-block;
+  border-radius: 4px;
+  vertical-align: top;
+  resize: none;
+}
+
+.noteForm div {
+  width: 144.86px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.noteForm div select {
+  vertical-align: top;
+  width: 144.86px;
+  height: 24px;
+  margin-bottom: 2px;
+}
