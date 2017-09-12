@@ -155,7 +155,12 @@ th {
 td {
   padding: 7px 10px;
   font-size: 20px;
-  text-align: left;
+  text-align: center;
+}
+
+td img {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .addEntity {

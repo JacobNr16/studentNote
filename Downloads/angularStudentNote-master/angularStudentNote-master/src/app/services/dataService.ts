@@ -6,9 +6,17 @@ import {Teacher} from '../models/teacher';
 @Injectable()
 export class DataService {
 
-  private teachers = [];
-  private classes = [];
-  private students = [];
+  private teachers = [
+    new Teacher(1, 'Dirk', 'Saller', 'ds@web.de', 'test'),
+    new Teacher(1, 'Helmut', 'Neemann', 'hn@web.de', 'test')
+  ];
+  private classes = [
+    new Class(1, 'INF16B', 2)
+  ];
+  private students = [
+    new Student(1, 'Max', 'Mustermann', 2),
+    new Student(2, 'Tim', 'Müller', 2)
+  ];
 
 
   public getTeachers() {
@@ -28,6 +36,11 @@ export class DataService {
     this.save();
   }
 
+  public addTeacher(teacher) {
+    this.teachers.push(teacher);
+    this.save();
+  }
+
   public save() {
     localStorage.setItem('data', JSON.stringify({
       students : this.students,
@@ -37,9 +50,11 @@ export class DataService {
   }
 
   public load() {
-    const data = JSON.parse(localStorage.getItem('data'));
-    this.students = data.students;
-    this.teachers = data.teachers;
-    this.classes = data.classes;
+    if (localStorage.getItem('data') !== null) {
+      const data = JSON.parse(localStorage.getItem('data'));
+      this.students = data.students;
+      this.teachers = data.teachers;
+      this.classes = data.classes;
+    }
   }
 }

@@ -53,10 +53,9 @@ header div {
 .logo {
 	float: left;
 	width: 554px;
-	height: 230;
+	height: 230px;
 	margin-bottom: 30px;
 	border-left:1px solid #ffffff;
-	position: left;
 }
 /* Logout-Button */
 #logoutBox {
@@ -147,7 +146,7 @@ tr:nth-child(even) {
 
 th {
     background-color: #ff3333;
-    color: white;	
+    color: white;
 	padding: 15px;
 	font-size: 20px;
 }
@@ -155,7 +154,7 @@ th {
 td {
 	padding: 7px 10px;
 	font-size: 20px;
-	text-align: left;
+	text-align: center;
 }
 
 .addEntity {
@@ -175,7 +174,7 @@ td {
 	transition-duration: 0.4s;
 	background-color: #ff3333;
 	color: white;
-	cursor: pointer;	
+	cursor: pointer;
 }
 
 .addEntity td input {
@@ -211,5 +210,17 @@ td {
 	vertical-align: top;
 	width: 144.86px;
 	height: 24px;
-	margin-bottom: 2px; 
+	margin-bottom: 2px;
 }
+
+#studentClassDropDown {
+  width: 100%;
+  height: 100%;
+}
+
+#studentDropDownZelle {
+  padding: 0px;
+  margin: 0px;
+  height: 40px;
+}
+

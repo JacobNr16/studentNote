@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,13 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private isLoggedIn: boolean;
-
-  constructor() {
-    this.isLoggedIn = false;
-  }
 
   public onLogin() {
-    this.isLoggedIn = true;
+    sessionStorage.setItem('login', 'loggedIn');
+  }
+
+  public isLoggedIn() {
+    return sessionStorage.getItem('login') === 'loggedIn';
   }
 }
