@@ -6,7 +6,7 @@
     <th>Mail</th>
     <th>Aktion</th>
   </tr>
-  <tr *ngFor="let teacher of teachers">
+  <tr *ngFor="let teacher of teachers; let i = index">
     <td>
       <input readonly value="{{ teacher.firstName }}" #inputFirstName/>
     </td>
@@ -16,12 +16,12 @@
     <td>
       <input readonly value="{{ teacher.mail }}" #inputMail/>
     </td>
-    <td>
-      <img *ngIf="!teacher.isEditable; else show_checkIcon" (click)="editTeacher(inputFirstName, inputLastName, inputMail)" src="/assets/res/edit_icon.svg" height=32 width=32 />
+    <td #tableAction>
+      <img *ngIf="!teacher.isEditable; else show_checkIcon" (click)="editTeacher(inputFirstName, inputLastName, inputMail, tableAction)" title="Bearbeiten" src="/assets/res/edit_icon.svg" height=32 width=32 />
       <ng-template #show_checkIcon>
-        <img (click)="updateTeacher(inputFirstName, inputLastName, teacher.mail, inputMail)" src="/assets/res/check_icon.png" height=32 width=32 />
+        <img (click)="updateTeacher(inputFirstName, inputLastName, teacher.mail, inputMail, tableAction, i)" src="/assets/res/check_icon.png" title="Bestätigen" height=32 width=32 />
       </ng-template>
-      <img (click)="deleteTeacher(teacher.mail)" src="/assets/res/delete_icon.png" height=32 width=32 />
+      <img (click)="deleteTeacher(teacher.mail)" src="/assets/res/delete_icon.png" title="Löschen" height=32 width=32 />
     </td>
   </tr>
 </table>
@@ -50,5 +50,6 @@
   <div id="snackbarFirstName">Bitte geben Sie einen Vornamen ein.</div>
   <div id="snackbarLastName">Bitte geben Sie einen Nachnamen ein.</div>
   <div id="snackbarMail">Bitte geben Sie eine gültige Mailaddresse an.</div>
+  <div id="snackbarMail2">Es gibt bereits einen Lehrer mit dieser Mailaddresse.</div>
   <div id="snackbarPassword">Ihre eingebenen Passwörter stimmen nicht überein.</div>
 </div>

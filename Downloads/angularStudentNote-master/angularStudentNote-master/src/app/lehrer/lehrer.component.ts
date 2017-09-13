@@ -37,6 +37,7 @@ export class LehrerComponent implements OnInit {
     return this.isValidFirstName(firstName) &&
       this.isValidLastName(lastName) &&
       this.isValidMail(mail) &&
+      this.isUniqueMail(mail) &&
       this.isValidPassword(password, password2);
   }
 
@@ -61,6 +62,16 @@ export class LehrerComponent implements OnInit {
     return false;
   }
 
+  isUniqueMail(mail: string) {
+    for (const teacher of this.teachers) {
+      if ((<Teacher> teacher).mail === mail) {
+        this.showSnackbar('snackbarMail2');
+        return false;
+      }
+    }
+    return true;
+  }
+
   add(firstName, lastName, mail, password, password2) {
     if (this.isValidTeacher(firstName, lastName, mail, password, password2)) {
       const teacher = new Teacher(5, firstName, lastName, mail, Md5.hashStr(password).toString());
@@ -72,13 +83,6 @@ export class LehrerComponent implements OnInit {
     const x = document.getElementById(elementId);
     x.className = 'show';
     setTimeout(function(){ x.className = x.className.replace('show', ''); }, 3000);
-  }
-
-  editTeacher(firstName, lastName, mail) {
-    this.teachers[this.getTeacherIndex((<HTMLInputElement> mail).value)].isEditable = true;
-    (<HTMLInputElement> firstName).removeAttribute('readonly');
-    (<HTMLInputElement> lastName).removeAttribute('readonly');
-    (<HTMLInputElement> mail).removeAttribute('readonly');
   }
 
   private getTeacherIndex(mail) {
@@ -95,15 +99,42 @@ export class LehrerComponent implements OnInit {
     this.dataService.deleteTeacher(mail);
   }
 
-  updateTeacher(firstName, lastName, mail, newMail) {
+  editTeacher(firstName, lastName, mail, action) {
+    this.teachers[this.getTeacherIndex((<HTMLInputElement> mail).value)].isEditable = true;
+    (<HTMLInputElement> firstName).removeAttribute('readonly');
+    (<HTMLInputElement> lastName).removeAttribute('readonly');
+    (<HTMLInputElement> mail).removeAttribute('readonly');
+    (<HTMLInputElement> firstName).style.backgroundColor = '#ff3333';
+    (<HTMLInputElement> lastName).style.backgroundColor = '#ff3333';
+    (<HTMLInputElement> mail).style.backgroundColor = '#ff3333';
+    (<HTMLInputElement> action).style.backgroundColor = '#ff3333';
+  }
+
+  updateTeacher(firstName, lastName, mail, newMail, action, index) {
     this.teachers[this.getTeacherIndex(mail)].isEditable = false;
     (<HTMLInputElement> firstName).setAttribute('readonly', 'readonly');
     (<HTMLInputElement> lastName).setAttribute('readonly', 'readonly');
     (<HTMLInputElement> newMail).setAttribute('readonly', 'readonly');
 
-    this.dataService.updateTeacher((<HTMLInputElement> firstName).value,
-      (<HTMLInputElement> lastName).value, mail, (<HTMLInputElement> newMail).value);
-    this.teachers = this.dataService.getTeachers();
+    if (index % 2 === 0) {
+      (<HTMLInputElement> firstName).style.backgroundColor = '#F0F0F0';
+      (<HTMLInputElement> lastName).style.backgroundColor = '#F0F0F0';
+      (<HTMLInputElement> newMail).style.backgroundColor = '#F0F0F0';
+      (<HTMLInputElement> action).style.backgroundColor = '#F0F0F0';
+    } else {
+      (<HTMLInputElement> firstName).style.backgroundColor = '#FFFFFF';
+      (<HTMLInputElement> lastName).style.backgroundColor = '#FFFFFF';
+      (<HTMLInputElement> newMail).style.backgroundColor = '#FFFFFF';
+      (<HTMLInputElement> action).style.backgroundColor = '#FFFFFF';
+    }
+
+    if ((<HTMLInputElement> newMail).value === mail || this.isUniqueMail((<HTMLInputElement> newMail).value)) {
+      this.dataService.updateTeacher((<HTMLInputElement> firstName).value,
+        (<HTMLInputElement> lastName).value, mail, (<HTMLInputElement> newMail).value);
+      this.teachers = this.dataService.getTeachers();
+    } else {
+      (<HTMLInputElement> newMail).value = mail;
+    }
   }
 
   ngOnInit() {

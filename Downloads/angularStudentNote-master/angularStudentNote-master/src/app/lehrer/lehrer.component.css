@@ -75,7 +75,7 @@ td img {
 }
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
-#snackbarFirstName, #snackbarLastName, #snackbarMail, #snackbarPassword {
+#snackbarFirstName, #snackbarLastName, #snackbarMail, #snackbarMail2, #snackbarPassword {
   visibility: hidden; /* Hidden by default. Visible on click */
   min-width: 250px; /* Set a default minimum width */
   margin-left: -125px; /* Divide value of min-width by 2 */
@@ -91,7 +91,7 @@ td img {
 }
 
 /* Show the snackbar when clicking on a button (class added with JavaScript) */
-#snackbarFirstName.show, #snackbarLastName.show, #snackbarMail.show, #snackbarPassword.show {
+#snackbarFirstName.show, #snackbarLastName.show, #snackbarMail.show, #snackbarMail2.show, #snackbarPassword.show {
   visibility: visible; /* Show the snackbar */
 
   /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
