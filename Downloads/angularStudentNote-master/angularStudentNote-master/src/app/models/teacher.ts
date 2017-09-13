@@ -4,6 +4,7 @@ export class Teacher {
   lastName: string;
   mail: string;
   password: string;
+  isEditable = false;
 
   constructor(id: number, firstName: string, lastName: string, mail: string, password: string) {
     this.id = id;

@@ -10,11 +10,11 @@ table, th, td {
   border: 1px solid black;
 }
 
-tr:not(:first-child):hover {
+tr:not(:first-child):hover, tr:not(:first-child):hover input {
   background-color: #BEBEBE;
 }
 
-tr:nth-child(even) {
+tr:nth-child(even), tr:nth-child(even) input {
   background-color: #F0F0F0;
 }
 
@@ -26,16 +26,23 @@ th {
 }
 
 td {
-  padding: 7px 10px;
-  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+td input {
+  display: block;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 100%;
+  font-size: 18px;
   text-align: center;
-  overflow: hidden;
-  -ms-text-overflow: ellipsis;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  min-height: 40px;
 }
 
 td img {
+  cursor: pointer;
   margin-left: 10px;
   margin-right: 10px;
 }

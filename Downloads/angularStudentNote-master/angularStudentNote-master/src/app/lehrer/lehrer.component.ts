@@ -11,7 +11,6 @@ import { Md5 } from 'ts-md5/dist/md5';
 export class LehrerComponent implements OnInit {
 
   public teachers;
-  public is
 
   constructor(private dataService: DataService) {
     dataService.load();
@@ -37,18 +36,28 @@ export class LehrerComponent implements OnInit {
   isValidTeacher(firstName, lastName, mail, password, password2) {
     return this.isValidFirstName(firstName) &&
       this.isValidLastName(lastName) &&
-      this.isValidMail(mail);
+      this.isValidMail(mail) &&
+      this.isValidPassword(password, password2);
   }
 
   isValidMail(mail: string) {
-    const index = mail.indexOf('@');
+    let index = mail.indexOf('@');
     if (index > 0) {
       const newMail = mail.substr(index);
-      if (newMail.indexOf('.') > 0) {
+      index = newMail.indexOf('.');
+      if (index > 1 && newMail.substr(index).length > 0) {
         return true;
       }
     }
     this.showSnackbar('snackbarMail');
+    return false;
+  }
+
+  isValidPassword(password, password2) {
+    if (password.length > 0 && password === password2) {
+      return true;
+    }
+    this.showSnackbar('snackbarPassword');
     return false;
   }
 
@@ -65,12 +74,36 @@ export class LehrerComponent implements OnInit {
     setTimeout(function(){ x.className = x.className.replace('show', ''); }, 3000);
   }
 
-  test(lastName) {
-    console.log(lastName);
+  editTeacher(firstName, lastName, mail) {
+    this.teachers[this.getTeacherIndex((<HTMLInputElement> mail).value)].isEditable = true;
+    (<HTMLInputElement> firstName).removeAttribute('readonly');
+    (<HTMLInputElement> lastName).removeAttribute('readonly');
+    (<HTMLInputElement> mail).removeAttribute('readonly');
+  }
+
+  private getTeacherIndex(mail) {
+    let index;
+    for (index = 0; index < this.teachers.length; index++) {
+      if (this.teachers[index].mail === mail) {
+        break;
+      }
+    }
+    return index;
   }
 
   deleteTeacher(mail) {
     this.dataService.deleteTeacher(mail);
+  }
+
+  updateTeacher(firstName, lastName, mail, newMail) {
+    this.teachers[this.getTeacherIndex(mail)].isEditable = false;
+    (<HTMLInputElement> firstName).setAttribute('readonly', 'readonly');
+    (<HTMLInputElement> lastName).setAttribute('readonly', 'readonly');
+    (<HTMLInputElement> newMail).setAttribute('readonly', 'readonly');
+
+    this.dataService.updateTeacher((<HTMLInputElement> firstName).value,
+      (<HTMLInputElement> lastName).value, mail, (<HTMLInputElement> newMail).value);
+    this.teachers = this.dataService.getTeachers();
   }
 
   ngOnInit() {
