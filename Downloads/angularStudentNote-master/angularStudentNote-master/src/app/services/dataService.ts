@@ -7,8 +7,8 @@ import {Teacher} from '../models/teacher';
 export class DataService {
 
   private teachers = [
-    new Teacher(1, 'Dirk', 'Saller', 'ds@web.de', 'test'),
-    new Teacher(2, 'Helmut', 'Neemann', 'hn@web.de', 'test')
+    new Teacher('Dirk', 'Saller', 'ds@web.de', 'test'),
+    new Teacher('Helmut', 'Neemann', 'hn@web.de', 'test')
   ];
   private classes = [
     new Class(1, 'INF16B', 2)

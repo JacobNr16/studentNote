@@ -74,7 +74,7 @@ export class LehrerComponent implements OnInit {
 
   add(firstName, lastName, mail, password, password2) {
     if (this.isValidTeacher(firstName, lastName, mail, password, password2)) {
-      const teacher = new Teacher(5, firstName, lastName, mail, Md5.hashStr(password).toString());
+      const teacher = new Teacher(firstName, lastName, mail, Md5.hashStr(password).toString());
       this.dataService.addTeacher(teacher);
     }
   }

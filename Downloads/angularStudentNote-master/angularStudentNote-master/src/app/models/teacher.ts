@@ -1,13 +1,11 @@
 export class Teacher {
-  id: number;
   firstName: string;
   lastName: string;
   mail: string;
   password: string;
   isEditable = false;
 
-  constructor(id: number, firstName: string, lastName: string, mail: string, password: string) {
-    this.id = id;
+  constructor(firstName: string, lastName: string, mail: string, password: string) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.mail = mail;
