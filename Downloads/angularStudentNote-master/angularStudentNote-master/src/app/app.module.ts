@@ -10,6 +10,7 @@ import { NotizenComponent } from './Notizen/notizen.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {DataService} from './services/dataService';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,7 @@ import {DataService} from './services/dataService';
     LehrerComponent,
     SchuelerComponent,
     NotizenComponent,
-    DashboardComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -26,4 +27,4 @@ import {DataService} from './services/dataService';
   providers: [DataService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

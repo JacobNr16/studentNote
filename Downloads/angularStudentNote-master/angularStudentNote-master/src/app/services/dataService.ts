@@ -41,6 +41,17 @@ export class DataService {
     this.save();
   }
 
+  public deleteTeacher(mail) {
+    let index;
+    for (index = 0; index < this.teachers.length; index++) {
+      if (this.teachers[index].mail === mail) {
+        break;
+      }
+    }
+    this.teachers.splice(index, 1);
+    this.save();
+  }
+
   public save() {
     localStorage.setItem('data', JSON.stringify({
       students : this.students,

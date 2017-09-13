@@ -18,11 +18,11 @@
       {{ teacher.mail }}
     </td>
     <td>
-      Test
+      {{ teacher.password }}
     </td>
     <td>
-      <img src="/assets/res/edit_icon.svg" height=32 width=32 />
-      <img src="/assets/res/delete_icon.png" height=32 width=32 />
+      <img (click)="test(teacher.lastName)" src="/assets/res/edit_icon.svg" height=32 width=32 />
+      <img (click)="deleteTeacher(teacher.mail)" src="/assets/res/delete_icon.png" height=32 width=32 />
     </td>
   </tr>
 </table>
@@ -31,15 +31,25 @@
   <table>
     <tr>
       <td>
-        <input type="text" name="nachname" placeholder="Nachname..." #lastName>
+        <input type="text" name="firstName" placeholder="Vorname..." #firstName>
       </td>
       <td>
-        <input type="text" name="vorname" placeholder="Vorname..." #firstName>
+        <input type="text" name="lastName" placeholder="Nachname..." #lastName>
       </td>
       <td>
         <input type="text" name="mail" placeholder="Mail..." #mail>
       </td>
+      <td>
+        <input type="password" name="password" placeholder="Passwort..." #password>
+      </td>
+      <td>
+        <input type="password" name="password2" placeholder="Passwort bestätigen..." #password2>
+      </td>
     </tr>
   </table>
- <button (click)="add(firstName.value, lastName.value, mail.value)" type="button"> Hinzufügen </button>
+  <button (click)="add(firstName.value, lastName.value, mail.value, password.value)" type="button"> Hinzufügen </button>
+  <div id="snackbarFirstName">Bitte geben Sie einen Vornamen ein.</div>
+  <div id="snackbarLastName">Bitte geben Sie einen Nachnamen ein.</div>
+  <div id="snackbarMail">Bitte geben Sie eine gültige Mailaddresse an.</div>
+  <div id="snackbarPassword">Ihre eingebenen Passwörter stimmen nicht überein.</div>
 </div>
