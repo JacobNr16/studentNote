@@ -18,7 +18,6 @@ export class DataService {
     new Student(2, 'Tim', 'Müller', 2)
   ];
 
-
   public getTeachers() {
     return this.teachers;
   }

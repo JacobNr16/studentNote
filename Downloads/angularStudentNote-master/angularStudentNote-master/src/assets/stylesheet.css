@@ -84,9 +84,10 @@ header nav a {
 }
 /* Veränderung der Farbe beim "berühren" */
 header nav a:hover {
-    background-color: #ddd;
-    color: black;
+  background-color: #ddd;
+  color: black;
 }
+
 /* Markieren des geklickten Links */
 header nav a.active {
     background-color: #4CAF50;
@@ -230,3 +231,8 @@ td {
   width: 22px;
   height: 22px;
 }
+
+#home:hover {
+  filter:invert(100%);
+}
+
