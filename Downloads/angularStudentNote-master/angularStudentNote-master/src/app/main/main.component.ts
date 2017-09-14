@@ -15,4 +15,8 @@ export class MainComponent implements OnInit {
   public onLogout() {
     sessionStorage.clear();
   }
+
+  home(test) {
+    //(<HTMLLinkElement> test).setA
+  }
 }

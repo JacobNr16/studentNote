@@ -11,10 +11,12 @@ import { Md5 } from 'ts-md5/dist/md5';
 export class LehrerComponent implements OnInit {
 
   public teachers;
+  public classes;
 
   constructor(private dataService: DataService) {
     dataService.load();
     this.teachers = dataService.getTeachers();
+    this.classes = dataService.getClasses();
   }
 
   isValidFirstName(firstName: string) {
@@ -96,7 +98,20 @@ export class LehrerComponent implements OnInit {
   }
 
   deleteTeacher(mail) {
-    this.dataService.deleteTeacher(mail);
+    if (!this.teacherHasClass(mail)) {
+      this.dataService.deleteTeacher(mail);
+    } else {
+      this.showSnackbar('snackbarClass');
+    }
+  }
+
+  teacherHasClass(mail) {
+    const teacherId = this.teachers.find(x => x.mail === mail).id;
+    const classOfTeacher = this.classes.find(x => x.id === teacherId);
+    if (classOfTeacher != null && classOfTeacher.teacherID === teacherId) {
+      return true;
+    }
+    return false;
   }
 
   editTeacher(firstName, lastName, mail, action) {
@@ -110,23 +125,16 @@ export class LehrerComponent implements OnInit {
     (<HTMLInputElement> action).style.backgroundColor = '#ff3333';
   }
 
-  updateTeacher(firstName, lastName, mail, newMail, action, index) {
+  updateTeacher(firstName, lastName, mail, newMail, action) {
     this.teachers[this.getTeacherIndex(mail)].isEditable = false;
     (<HTMLInputElement> firstName).setAttribute('readonly', 'readonly');
     (<HTMLInputElement> lastName).setAttribute('readonly', 'readonly');
     (<HTMLInputElement> newMail).setAttribute('readonly', 'readonly');
 
-    if (index % 2 === 0) {
-      (<HTMLInputElement> firstName).style.backgroundColor = '#F0F0F0';
-      (<HTMLInputElement> lastName).style.backgroundColor = '#F0F0F0';
-      (<HTMLInputElement> newMail).style.backgroundColor = '#F0F0F0';
-      (<HTMLInputElement> action).style.backgroundColor = '#F0F0F0';
-    } else {
-      (<HTMLInputElement> firstName).style.backgroundColor = '#FFFFFF';
-      (<HTMLInputElement> lastName).style.backgroundColor = '#FFFFFF';
-      (<HTMLInputElement> newMail).style.backgroundColor = '#FFFFFF';
-      (<HTMLInputElement> action).style.backgroundColor = '#FFFFFF';
-    }
+    (<HTMLInputElement> firstName).style.backgroundColor = '';
+    (<HTMLInputElement> lastName).style.backgroundColor = '';
+    (<HTMLInputElement> newMail).style.backgroundColor = '';
+    (<HTMLInputElement> action).style.backgroundColor = '';
 
     if ((<HTMLInputElement> newMail).value === mail || this.isUniqueMail((<HTMLInputElement> newMail).value)) {
       this.dataService.updateTeacher((<HTMLInputElement> firstName).value,

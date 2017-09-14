@@ -213,3 +213,14 @@ td {
   height: 24px;
   margin-bottom: 2px;
 }
+
+.tableDropDown {
+  width: 100%;
+  height: 100%;
+}
+
+.tableDropDownCell {
+  padding: 0;
+  margin: 0;
+  height: 40px;
+}

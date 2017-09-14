@@ -9,9 +9,10 @@
       <input readonly value="{{ class.stufe }}"/>
     </td>
     <td>
-      <input readonly value="{{ class.stufe }}"/>
-      <button type="button"> bearbeiten </button>
-      <button type="button"> löschen </button>
+      <input readonly value="{{ class.fach }}"/>
+    </td>
+    <td>
+      <input readonly value="{{getNameOfTeacher(class.id)}}"/>
     </td>
   </tr>
 </table>
@@ -20,10 +21,15 @@
   <table>
     <tr>
       <td>
-        <input type="text" name="nachname" placeholder="Name...">
+        <input type="text" name="name" placeholder="Name...">
       </td>
       <td>
-        <input type="text" name="vorname" placeholder="Fach...">
+        <input type="text" name="fach" placeholder="Fach...">
+      </td>
+      <td class="tableDropDownCell">
+        <select class="tableDropDown">
+          <option *ngFor="let teacher of teachers"> {{ teacher.firstName + ' ' + teacher.lastName }} </option>
+        </select>
       </td>
     </tr>
   </table>

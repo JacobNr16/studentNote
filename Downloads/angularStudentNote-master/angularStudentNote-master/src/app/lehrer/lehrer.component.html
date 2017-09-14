@@ -6,9 +6,9 @@
     <th>Mail</th>
     <th>Aktion</th>
   </tr>
-  <tr *ngFor="let teacher of teachers; let i = index">
+  <tr *ngFor="let teacher of teachers">
     <td>
-      <input readonly value="{{ teacher.firstName }}" #inputFirstName/>
+      <input readonly value="{{ teacher.firstName }}" #inputFirstName />
     </td>
     <td>
       <input readonly value="{{ teacher.lastName }}" #inputLastName/>
@@ -19,7 +19,7 @@
     <td #tableAction>
       <img *ngIf="!teacher.isEditable; else show_checkIcon" (click)="editTeacher(inputFirstName, inputLastName, inputMail, tableAction)" title="Bearbeiten" src="/assets/res/edit_icon.svg" height=32 width=32 />
       <ng-template #show_checkIcon>
-        <img (click)="updateTeacher(inputFirstName, inputLastName, teacher.mail, inputMail, tableAction, i)" src="/assets/res/check_icon.png" title="Bestätigen" height=32 width=32 />
+        <img (click)="updateTeacher(inputFirstName, inputLastName, teacher.mail, inputMail, tableAction)" src="/assets/res/check_icon.png" title="Bestätigen" height=32 width=32 />
       </ng-template>
       <img (click)="deleteTeacher(teacher.mail)" src="/assets/res/delete_icon.png" title="Löschen" height=32 width=32 />
     </td>
@@ -52,4 +52,5 @@
   <div id="snackbarMail">Bitte geben Sie eine gültige Mailaddresse an.</div>
   <div id="snackbarMail2">Es gibt bereits einen Lehrer mit dieser Mailaddresse.</div>
   <div id="snackbarPassword">Ihre eingebenen Passwörter stimmen nicht überein.</div>
+  <div id="snackbarClass">Lehrer mit einer Klasse können nicht gelöscht werden.</div>
 </div>

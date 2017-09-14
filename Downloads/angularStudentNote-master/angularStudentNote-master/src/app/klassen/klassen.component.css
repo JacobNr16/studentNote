@@ -120,3 +120,14 @@ td img {
   from {bottom: 30px; opacity: 1;}
   to {bottom: 0; opacity: 0;}
 }
+
+.tableDropDown {
+  width: 100%;
+  height: 100%;
+}
+
+.tableDropDownCell {
+  padding: 0;
+  margin: 0;
+  height: 40px;
+}

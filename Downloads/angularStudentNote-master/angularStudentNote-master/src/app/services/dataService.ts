@@ -11,7 +11,7 @@ export class DataService {
     new Teacher('Helmut', 'Neemann', 'hn@web.de', 'test')
   ];
   private classes = [
-    new Class(1, 'INF16B', 'Angewandte Informatik', 2)
+    new Class(1, 'INF16B', 'Angewandte Informatik', 1)
   ];
   private students = [
     new Student(1, 'Max', 'Mustermann', 2),
@@ -29,6 +29,16 @@ export class DataService {
 
   public getClasses() {
     return this.classes;
+  }
+
+  public getTeacherNameById(id: number) {
+    const teacher = this.teachers.find(x => x.id === id);
+    return teacher.firstName + ' ' + teacher.lastName;
+  }
+
+  public addClass(student) {
+    this.classes.push(student);
+    this.save();
   }
 
   public addStudent(student) {
