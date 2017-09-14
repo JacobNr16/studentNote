@@ -4,8 +4,13 @@ import {NotizenComponent} from './Notizen/notizen.component';
 import {KlassenComponent} from './klassen/klassen.component';
 import {LehrerComponent} from './lehrer/lehrer.component';
 import {SchuelerComponent} from './schueler/schueler.component';
+import {DashboardComponent} from "./dashboard/dashboard.component";
 
 const routes: Routes = [
+  {
+    path: '',
+    component: DashboardComponent
+  },
   {
     path: 'notizen',
     component: NotizenComponent
