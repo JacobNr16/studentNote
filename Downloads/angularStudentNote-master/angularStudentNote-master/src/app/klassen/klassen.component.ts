@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from '../services/dataService';
 
 @Component({
   selector: 'app-klassen',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KlassenComponent implements OnInit {
 
-  constructor() { }
+  public classes;
+
+  constructor(private dataService: DataService) {
+    dataService.load();
+    this.classes = dataService.getClasses();
+  }
 
   ngOnInit() {
   }

@@ -7,8 +7,9 @@ import { KlassenComponent } from './klassen/klassen.component';
 import { LehrerComponent } from './lehrer/lehrer.component';
 import { SchuelerComponent } from './schueler/schueler.component';
 import { NotizenComponent } from './Notizen/notizen.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { MainComponent } from './main/main.component';
 import {DataService} from './services/dataService';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {DataService} from './services/dataService';
     LehrerComponent,
     SchuelerComponent,
     NotizenComponent,
+    MainComponent,
     DashboardComponent
   ],
   imports: [

@@ -1,11 +1,13 @@
 export class Class {
   id: number;
-  name: string;
+  stufe: string;
+  fach: string;
   teacherID: number;
 
-  constructor(id: number, name: string, teacherID: number) {
+  constructor(id: number, stufe: string, fach: string, teacherID: number) {
     this.id = id;
-    this.name = name;
+    this.stufe = stufe;
+    this.fach = fach;
     this.teacherID = teacherID;
   }
 }

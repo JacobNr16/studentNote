@@ -1,0 +1,18 @@
+<header>
+  <div>
+    <img class="logo" src="/assets/res/Logo_Dashboard.png" alt="bild1" width="554" height="230" />
+    <a (click)="onLogout()" id="logoutBox" href="/"> <!-- Logout Link -->
+      <img src="/assets/res/login_icon.png" width="50" height="50" title="Logout" alt="Logout"/>
+    </a>
+  </div>
+  <nav>
+    <li><a [routerLink]="['/', 'notizen']"> Notizen </a></li>
+    <li><a [routerLink]="['/', 'schüler']"> Schüler </a></li>
+    <li><a [routerLink]="['/', 'klassen']"> Klassen </a></li>
+    <li><a [routerLink]="['/', 'lehrer']"> Lehrer </a></li>
+  </nav>
+</header>
+
+<main>
+  <router-outlet></router-outlet>
+</main>

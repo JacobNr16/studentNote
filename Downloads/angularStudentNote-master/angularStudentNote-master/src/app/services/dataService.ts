@@ -11,7 +11,7 @@ export class DataService {
     new Teacher('Helmut', 'Neemann', 'hn@web.de', 'test')
   ];
   private classes = [
-    new Class(1, 'INF16B', 2)
+    new Class(1, 'INF16B', 'Angewandte Informatik', 2)
   ];
   private students = [
     new Student(1, 'Max', 'Mustermann', 2),
@@ -28,7 +28,7 @@ export class DataService {
   }
 
   public getClasses() {
-    return this.getClasses();
+    return this.classes;
   }
 
   public addStudent(student) {

@@ -1,4 +1,4 @@
-<div *ngIf="!isLoggedIn(); else show_dashboard" id="loginForm">
+<div *ngIf="!isLoggedIn(); else show_main" id="loginForm">
   <header>
     <img src="/assets/res/Logo.png" />
   </header>
@@ -16,8 +16,8 @@
   </form>
 </div>
 
-<ng-template #show_dashboard>
-  <app-dashboard></app-dashboard>
+<ng-template #show_main>
+  <app-main></app-main>
 </ng-template>
 
 
