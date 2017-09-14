@@ -107,7 +107,7 @@ export class LehrerComponent implements OnInit {
 
   teacherHasClass(mail) {
     const teacherId = this.teachers.find(x => x.mail === mail).id;
-    const classOfTeacher = this.classes.find(x => x.id === teacherId);
+    const classOfTeacher = this.classes.find(x => x.teacherID === teacherId);
     if (classOfTeacher != null && classOfTeacher.teacherID === teacherId) {
       return true;
     }

@@ -11,7 +11,7 @@ export class DataService {
     new Teacher('Helmut', 'Neemann', 'hn@web.de', 'test')
   ];
   private classes = [
-    new Class(1, 'INF16B', 'Angewandte Informatik', 1)
+    new Class('INF16B', 'Angewandte Informatik', this.teachers[0].id)
   ];
   private students = [
     new Student(1, 'Max', 'Mustermann', 2),
@@ -30,13 +30,8 @@ export class DataService {
     return this.classes;
   }
 
-  public getTeacherNameById(id: number) {
-    const teacher = this.teachers.find(x => x.id === id);
-    return teacher.firstName + ' ' + teacher.lastName;
-  }
-
-  public addClass(student) {
-    this.classes.push(student);
+  public addClass(newClass) {
+    this.classes.push(newClass);
     this.save();
   }
 
@@ -63,6 +58,23 @@ export class DataService {
     this.save();
   }
 
+  getIndexOfClass(classId) {
+    for (let index = 0; index < this.classes.length; index++) {
+      if (this.classes[index].id === classId) {
+        return index;
+      }
+    }
+    return null;
+  }
+
+  public updateClass(id: number, stufe: string, fach: string, teacherId: number) {
+    const index = this.getIndexOfClass(id);
+    this.classes[index].stufe = stufe;
+    this.classes[index].fach = fach;
+    this.classes[index].teacherID = teacherId;
+    this.save();
+  }
+
   private getTeacherIndex(mail) {
     let index;
     for (index = 0; index < this.teachers.length; index++) {
@@ -82,7 +94,7 @@ export class DataService {
   }
 
   public load() {
-    if (localStorage.getItem('data') !== null) {
+    if (localStorage.getItem('data') != null) {
       const data = JSON.parse(localStorage.getItem('data'));
       this.students = data.students;
       this.teachers = data.teachers;

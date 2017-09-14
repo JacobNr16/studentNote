@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from '../services/dataService';
 
 @Component({
   selector: 'app-main',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() {}
+  constructor(private dataService: DataService) {
+    if (localStorage.getItem('data') == null) {
+      this.dataService.save();
+    }
+  }
 
   ngOnInit() {
   }

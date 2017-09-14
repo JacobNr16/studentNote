@@ -3,16 +3,26 @@
     <th>Stufe</th>
     <th>Fach</th>
     <th>Klassenlehrer</th>
+    <th>Aktion</th>
   </tr>
   <tr *ngFor="let class of classes">
     <td>
-      <input readonly value="{{ class.stufe }}"/>
+      <input readonly value="{{ class.stufe }}" #inputStufe/>
     </td>
     <td>
-      <input readonly value="{{ class.fach }}"/>
+      <input readonly value="{{ class.fach }}" #inputFach/>
     </td>
-    <td>
-      <input readonly value="{{getNameOfTeacher(class.id)}}"/>
+    <td class="tableDropDownCell">
+      <select class="tableDropDown" #inputLehrer>
+        <option [disabled]="!class.isEditable" *ngFor="let teacher of teachers" [selected]="teacher.id === class.teacherID"> {{ teacher.firstName + ' ' + teacher.lastName }} </option>
+      </select>
+    </td>
+    <td #tableAction>
+      <img *ngIf="!class.isEditable; else show_checkIcon" (click)="editClass(inputStufe, inputFach, inputLehrer, tableAction, class.id)" title="Bearbeiten" src="/assets/res/edit_icon.svg" height=32 width=32 />
+      <ng-template #show_checkIcon>
+        <img (click)="updateClass(inputStufe, inputFach, inputLehrer, tableAction, class.id)" src="/assets/res/check_icon.png" title="Bestätigen" height=32 width=32 />
+      </ng-template>
+      <img (click)="deleteTeacher(teacher.mail)" src="/assets/res/delete_icon.png" title="Löschen" height=32 width=32 />
     </td>
   </tr>
 </table>
@@ -21,17 +31,19 @@
   <table>
     <tr>
       <td>
-        <input type="text" name="name" placeholder="Name...">
+        <input type="text" name="stufe" placeholder="Stufe..." #addName>
       </td>
       <td>
-        <input type="text" name="fach" placeholder="Fach...">
+        <input type="text" name="fach" placeholder="Fach..." #addFach>
       </td>
       <td class="tableDropDownCell">
-        <select class="tableDropDown">
+        <select class="tableDropDown" #addLehrer>
           <option *ngFor="let teacher of teachers"> {{ teacher.firstName + ' ' + teacher.lastName }} </option>
         </select>
       </td>
     </tr>
   </table>
-  <button type="button"> Hinzufügen </button>
+  <button (click)="add(addName.value, addFach.value, addLehrer.selectedIndex)" type="button"> Hinzufügen </button>
+  <div id="snackbarStufe">Bitte geben Sie eine Stufe ein.</div>
+  <div id="snackbarFach">Bitte geben Sie ein Fach ein.</div>
 </div>
