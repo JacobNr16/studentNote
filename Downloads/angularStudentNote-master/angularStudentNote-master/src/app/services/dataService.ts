@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Student} from '../models/student';
 import {Class} from '../models/class';
 import {Teacher} from '../models/teacher';
+import {Note} from '../models/note';
 
 @Injectable()
 export class DataService {
@@ -17,6 +18,18 @@ export class DataService {
     new Student('Max', 'Mustermann', this.classes[0].id),
     new Student('Tim', 'Müller', this.classes[0].id)
   ];
+  private notes = [
+    new Note(new Date().toLocaleString(), '5 Minuten zu spät zum Unterricht',
+      this.students[0].id, this.teachers[0].id,
+      this.teachers[0].firstName + ' ' + this.teachers[0].lastName),
+    new Note(new Date().toLocaleString(), 'Strafarbeit',
+      this.students[0].id, this.teachers[0].id,
+      this.teachers[0].firstName + ' ' + this.teachers[0].lastName)
+  ];
+
+  public getNotes() {
+    return this.notes;
+  }
 
   public getTeachers() {
     return this.teachers;
@@ -69,9 +82,26 @@ export class DataService {
 
   public deleteStudent(studentId) {
     const studentIndex = this.getStudentIndex(studentId);
-    console.log(studentIndex);
     if (studentIndex !== -1) {
       this.students.splice(studentIndex, 1);
+      this.deleteAllNotesOfStudent(studentId);
+      this.save();
+    }
+  }
+
+  private deleteAllNotesOfStudent(studentId) {
+    for (let index = 0; index < this.notes.length; index++) {
+      if (this.notes[index].studentId === studentId) {
+        this.deleteNote(this.notes[index].id);
+        index--;
+      }
+    }
+  }
+
+  public deleteNote(noteId) {
+    const noteIndex = this.getNoteIndex(noteId);
+    if (noteIndex !== -1) {
+      this.notes.splice(noteIndex, 1);
       this.save();
     }
   }
@@ -91,6 +121,22 @@ export class DataService {
     this.teachers[index].lastName = lastName;
     this.teachers[index].mail = newMail;
     this.save();
+  }
+
+  public updateNote(noteId, newNoteText) {
+    const index = this.getNoteIndex(noteId);
+    this.notes[index].timestamp = new Date().toLocaleString();
+    this.notes[index].text = newNoteText;
+    this.save();
+  }
+
+  getNoteIndex(noteId) {
+    for (let index = 0; index < this.notes.length; index++) {
+      if (this.notes[index].id === noteId) {
+        return index;
+      }
+    }
+    return -1;
   }
 
   getIndexOfClass(classId) {
@@ -141,7 +187,8 @@ export class DataService {
     localStorage.setItem('data', JSON.stringify({
       students : this.students,
       teachers : this.teachers,
-      classes : this.classes
+      classes : this.classes,
+      notes : this.notes
     }));
   }
 
@@ -151,6 +198,7 @@ export class DataService {
       this.students = data.students;
       this.teachers = data.teachers;
       this.classes = data.classes;
+      this.notes = data.notes;
     }
   }
 }

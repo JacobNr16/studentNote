@@ -1,91 +1,30 @@
-<div class="noteForm">
-  <div>
-    <select>
-      <option value="felicitasFischer">Felicitas Fischer</option>
-      <option value="ronaldWeis">Ronald Weis</option>
-      <option value="johannesHerrmann">Johannes Herrmann</option>
-      <option value="handOtterbach">Hans Otterbach</option>
-    </select>
-    <br />
-    <input id="date" type="date"/>
-  </div>
-  <textarea rows="3" cols="50" placeholder="Notiz einfügen..."></textarea>
-  <input type="image" src="/assets/res/addIcon.png" border="0" alt="Submit" height=51 width=51 />
-</div>
-
-
 <table>
   <tr>
-    <th>Datum</th>
+    <th>Zeitstempel</th>
     <th>Notiz</th>
     <th>Verfasser</th>
+    <th>Schüler</th>
+    <th>Aktion</th>
   </tr>
-  <tr>
+  <tr *ngFor="let note of notes">
     <td>
-      04.05.17 - 13:00
-      <button type="button"> bearbeiten </button>
-      <button type="button"> löschen </button>
+      <input readonly value="{{ note.timestamp }}" #inputTimestamp/>
     </td>
     <td>
-      30 Minuten zu spät zum Unterricht.
-      <button type="button"> bearbeiten </button>
-      <button type="button"> löschen </button>
+      <textarea readonly value="{{ note.text }}" #inputNote></textarea>
     </td>
     <td>
-      A. Auch
-      <button type="button"> bearbeiten </button>
-      <button type="button"> löschen </button>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      03.05.17 - 12:45
-      <button type="button"> bearbeiten </button>
-      <button type="button"> löschen </button>
+      {{ note.teacherName }}
     </td>
     <td>
-      Muss Klausur am 09.05. nachschreiben.
-      <button type="button"> bearbeiten </button>
-      <button type="button"> löschen </button>
+      {{ getNameOfStudent(note.studentId) }}
     </td>
-    <td>
-      H. Heine
-      <button type="button"> bearbeiten </button>
-      <button type="button"> löschen </button>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      02.05.17 - 11:10
-      <button type="button"> bearbeiten </button>
-      <button type="button"> löschen </button>
-    </td>
-    <td>
-      Vortrag über Globalisierung in nächster Stunde.
-      <button type="button"> bearbeiten </button>
-      <button type="button"> löschen </button>
-    </td>
-    <td>
-      A. Auch
-      <button type="button"> bearbeiten </button>
-      <button type="button"> löschen </button>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      01.05.17 - 15:05
-      <button type="button"> bearbeiten </button>
-      <button type="button"> löschen </button>
-    </td>
-    <td>
-      Ist nicht zum Unterricht erschienen.
-      <button type="button"> bearbeiten </button>
-      <button type="button"> löschen </button>
-    </td>
-    <td>
-      H. Heine
-      <button type="button"> bearbeiten </button>
-      <button type="button"> löschen </button>
+    <td #tableAction>
+      <img *ngIf="!note.isEditable; else show_checkIcon" (click)="editNote(note.id, inputNote)" title="Bearbeiten" src="/assets/res/edit_icon.svg" height=32 width=32 />
+      <ng-template #show_checkIcon>
+        <img (click)="updateNote(inputNote, note.id)" src="/assets/res/check_icon.png" title="Bestätigen" height=32 width=32 />
+      </ng-template>
+      <img (click)="deleteNote(note.id)" src="/assets/res/delete_icon.png" title="Löschen" height=32 width=32 />
     </td>
   </tr>
 </table>

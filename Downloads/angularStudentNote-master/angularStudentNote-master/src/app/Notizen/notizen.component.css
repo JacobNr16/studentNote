@@ -1,110 +1,4 @@
 
-/* Header generell */
-header {
-  padding: 20px;
-}
-
-header div {
-  margin: auto;
-  display: inline;
-}
-
-#loginForm {
-  padding: 12px 20px;
-  width: 30%;
-}
-
-#loginForm form div img, #loginForm form div input {
-  vertical-align: middle;
-}
-
-#loginForm form div {
-  margin: 4px;
-}
-
-#loginForm form > input {
-  font-size: 20px;
-  display: block;
-  margin: 5px;
-  width: 335px;
-  background-color: white;
-  border-radius: 4px;
-  border: 2px solid #ff3333;
-  cursor: pointer;
-}
-
-#loginForm form > input:hover {
-  transition-duration: 0.4s;
-  background-color: #ff3333;
-  color: white;
-}
-
-#loginForm form div input {
-  box-sizing: border-box;
-  border: 1px solid black;
-  border-radius: 4px;
-  width: 300px;
-  height: 30px;
-  padding: 3px;
-  font-size: 17px;
-}
-
-/* Logo Dashboard */
-.logo {
-  float: left;
-  width: 554px;
-  height: 230;
-  margin-bottom: 30px;
-  border-left:1px solid #ffffff;
-  position: left;
-}
-/* Logout-Button */
-#logoutBox {
-  float: right;
-  width: 50px;
-}
-/* Navigationsleite*/
-header nav {
-  background-color: #333;
-  overflow: hidden;
-  margin: auto;
-  display: block;
-  width: 100%;
-  text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-/* Style der Links  */
-header nav a {
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 20px;
-  display: inline;
-}
-/* Veränderung der Farbe beim "berühren" */
-header nav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-/* Markieren des geklickten Links */
-header nav a.active {
-  background-color: #4CAF50;
-  color: white;
-}
-/* Anzeige der Nav-Elemente */
-header nav li {
-  display: inline;
-  list-style: none;
-  position: relative;
-}
-
-form div {
-  display: block;
-  margin: auto;
-}
-
 table {
   margin: auto;
   width: 70%;
@@ -112,36 +6,15 @@ table {
   table-layout: fixed;
 }
 
-td button {
-  visibility: hidden;
-  font-size: 15px;
-  float: right;
-  border-radius: 4px;
-  background-color: white;
-  border: 2px solid #ff3333;
-  margin: 0 1px;
-}
-
-td button:hover {
-  transition-duration: 0.4s;
-  background-color: #ff3333;
-  color: white;
-  cursor: pointer;
-}
-
-td:hover button {
-  visibility: visible;
-}
-
 table, th, td {
   border: 1px solid black;
 }
 
-tr:not(:first-child):hover {
+tr:not(:first-child):hover, tr:not(:first-child):hover input {
   background-color: #BEBEBE;
 }
 
-tr:nth-child(even) {
+tr:nth-child(even), tr:nth-child(even) input {
   background-color: #F0F0F0;
 }
 
@@ -153,9 +26,31 @@ th {
 }
 
 td {
-  padding: 7px 10px;
-  font-size: 20px;
-  text-align: left;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+td input, td textarea {
+  display: block;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 100%;
+  font-size: 18px;
+  text-align: center;
+  min-height: 40px;
+}
+
+td textarea {
+  resize: none;
+  overflow: hidden;
+}
+
+td img {
+  cursor: pointer;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .addEntity {
@@ -185,31 +80,82 @@ td {
   width: 100%;
 }
 
-.noteForm {
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 15px;
-  width: 60%;
-  text-align: center;
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+.tableDropDown {
+  width: 100%;
+  height: 100%;
+}
+
+.tableDropDownCell {
+  padding: 0;
+  margin: 0;
+  height: 40px;
 }
 
 
-.noteForm textarea {
-  display: inline-block;
-  border-radius: 4px;
-  vertical-align: top;
-  resize: none;
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbarFirstName, #snackbarLastName {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  bottom: 30px; /* 30px from the bottom */
 }
 
-.noteForm div {
-  width: 144.86px;
-  display: inline-block;
-  vertical-align: top;
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbarFirstName.show, #snackbarLastName.show {
+  visibility: visible; /* Show the snackbar */
+
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
-.noteForm div select {
-  vertical-align: top;
-  width: 144.86px;
-  height: 24px;
-  margin-bottom: 2px;
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from '../services/dataService';
+import {Student} from '../models/student';
+import {Teacher} from '../models/teacher';
 
 @Component({
   selector: 'app-notizen',
@@ -7,7 +10,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotizenComponent implements OnInit {
 
-  constructor() { }
+  public notes;
+  public students;
+  public teachers;
+
+  constructor(private dataService: DataService) {
+    dataService.load();
+    this.notes = dataService.getNotes();
+    this.students = dataService.getStudents();
+    this.teachers = dataService.getTeachers();
+  }
+
+  getNameOfStudent(studentId) {
+    const student = this.students.find(x => (<Student> x).id === studentId);
+    return student.firstName + ' ' + student.lastName;
+  }
+
+  editNote(noteId, inputNote) {
+    const index = this.getIndexOfNote(noteId);
+    if (index != null) {
+      this.notes[index].isEditable = true;
+      (<HTMLTextAreaElement> inputNote).removeAttribute('readonly');
+    }
+  }
+
+  getIndexOfNote(noteId) {
+    for (let index = 0; index < this.notes.length; index++) {
+      if (this.notes[index].id === noteId) {
+        return index;
+      }
+    }
+    return null;
+  }
+
+  updateNote(inputNote, noteId) {
+    const index = this.getIndexOfNote(noteId);
+    if (index != null) {
+      this.notes[index].isEditable = false;
+      (<HTMLTextAreaElement> inputNote).setAttribute('readonly', 'readonly');
+
+      this.dataService.updateNote(noteId, (<HTMLTextAreaElement> inputNote).value)
+    }
+  }
+
+  deleteNote(noteId) {
+    this.dataService.deleteNote(noteId);
+  }
 
   ngOnInit() {
   }
