@@ -22,7 +22,7 @@
       <ng-template #show_checkIcon>
         <img (click)="updateClass(inputStufe, inputFach, inputLehrer, tableAction, class.id)" src="/assets/res/check_icon.png" title="Bestätigen" height=32 width=32 />
       </ng-template>
-      <img (click)="deleteTeacher(teacher.mail)" src="/assets/res/delete_icon.png" title="Löschen" height=32 width=32 />
+      <img (click)="deleteClass(class.id)" src="/assets/res/delete_icon.png" title="Löschen" height=32 width=32 />
     </td>
   </tr>
 </table>
@@ -45,5 +45,7 @@
   </table>
   <button (click)="add(addName.value, addFach.value, addLehrer.selectedIndex)" type="button"> Hinzufügen </button>
   <div id="snackbarStufe">Bitte geben Sie eine Stufe ein.</div>
+  <div id="snackbarStufe2">Die Klasse existiert bereits.</div>
   <div id="snackbarFach">Bitte geben Sie ein Fach ein.</div>
+  <div id="snackbarHasStudents">Klassen mit Schülern können nicht gelöscht werden.</div>
 </div>

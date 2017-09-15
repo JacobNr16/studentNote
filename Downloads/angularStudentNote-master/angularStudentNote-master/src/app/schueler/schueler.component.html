@@ -1,24 +1,28 @@
 <table>
   <tr>
-    <th>Nachname</th>
     <th>Vorname</th>
+    <th>Nachname</th>
     <th>Klasse</th>
+    <th>Aktion</th>
   </tr>
   <tr *ngFor="let student of students">
     <td>
-      {{ student.lastName }}
-      <button type="button"> bearbeiten </button>
-      <button type="button"> löschen </button>
+      <input readonly value="{{ student.firstName }}" #inputFirstName/>
     </td>
     <td>
-      {{ student.firstName }}
-      <button type="button"> bearbeiten </button>
-      <button type="button"> löschen </button>
+      <input readonly value="{{ student.lastName }}" #inputLastName/>
     </td>
-    <td>
-      9b
-      <button type="button"> bearbeiten </button>
-      <button type="button"> löschen </button>
+    <td class="tableDropDownCell">
+      <select class="tableDropDown" #inputClass>
+        <option [disabled]="!student.isEditable" *ngFor="let class of classes" [selected]="class.id === student.classID"> {{ class.stufe }} </option>
+      </select>
+    </td>
+    <td #tableAction>
+      <img *ngIf="!student.isEditable; else show_checkIcon" (click)="editStudent(inputFirstName, inputLastName, inputClass, tableAction, student.id)" title="Bearbeiten" src="/assets/res/edit_icon.svg" height=32 width=32 />
+      <ng-template #show_checkIcon>
+        <img (click)="updateStudent(inputFirstName, inputLastName, inputClass, tableAction, student.id)" src="/assets/res/check_icon.png" title="Bestätigen" height=32 width=32 />
+      </ng-template>
+      <img (click)="deleteStudent(student.id)" src="/assets/res/delete_icon.png" title="Löschen" height=32 width=32 />
     </td>
   </tr>
 </table>
@@ -27,20 +31,19 @@
   <table>
     <tr>
       <td>
-        <input type="text" name="nachname" placeholder="Nachname..." #lastName>
+        <input type="text" name="vorname" placeholder="Vorname..." #addFirstName>
       </td>
       <td>
-        <input type="text" name="vorname" placeholder="Vorname..." #firstName>
+        <input type="text" name="nachname" placeholder="Nachname..." #addLastName>
       </td>
       <td class="tableDropDownCell">
-        <select class="tableDropDown">
-          <option value="felicitasFischer">Felicitas Fischer</option>
-          <option value="ronaldWeis">Ronald Weis</option>
-          <option value="johannesHerrmann">Johannes Herrmann</option>
-          <option value="handOtterbach">Hans Otterbach</option>
+        <select class="tableDropDown" #addClass>
+          <option *ngFor="let class of classes"> {{ class.stufe }} </option>
         </select>
       </td>
     </tr>
   </table>
-  <button (click)="add(firstName.value, lastName.value)" type="button"> Hinzufügen </button>
+  <button (click)="add(addFirstName.value, addLastName.value, addClass.selectedIndex)" type="button"> Hinzufügen </button>
+  <div id="snackbarFirstName">Bitte geben Sie einen Vornamen ein.</div>
+  <div id="snackbarLastName">Bitte geben Sie einen Nachnamen ein.</div>
 </div>

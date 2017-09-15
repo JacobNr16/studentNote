@@ -11,11 +11,13 @@ export class KlassenComponent implements OnInit {
 
   public classes;
   public teachers;
+  public students;
 
   constructor(private dataService: DataService) {
     dataService.load();
     this.classes = dataService.getClasses();
     this.teachers = dataService.getTeachers();
+    this.students = dataService.getStudents();
   }
 
   getIndexOfClass(classId) {
@@ -58,7 +60,17 @@ export class KlassenComponent implements OnInit {
   }
 
   isValidClass(stufe, fach) {
-    return this.isValidStufe(stufe) && this.isValidFach(fach);
+    return this.isValidStufe(stufe) && this.isUniqueStufe(stufe) && this.isValidFach(fach);
+  }
+
+  isUniqueStufe(stufe) {
+    for (const klasse of this.classes) {
+      if ((<Class> klasse).stufe.toUpperCase() === stufe.toUpperCase()) {
+        this.showSnackbar('snackbarStufe2');
+        return false;
+      }
+    }
+    return true;
   }
 
   isValidStufe(stufe) {
@@ -81,6 +93,23 @@ export class KlassenComponent implements OnInit {
     const x = document.getElementById(elementId);
     x.className = 'show';
     setTimeout(function(){ x.className = x.className.replace('show', ''); }, 3000);
+  }
+
+  deleteClass(classId) {
+    if (!this.classHasStudents(classId)) {
+      this.dataService.deleteClass(classId);
+    } else {
+      this.showSnackbar('snackbarHasStudents');
+    }
+  }
+
+  classHasStudents(classId) {
+    for (const student of this.students) {
+      if (student.classID === classId) {
+        return true;
+      }
+    }
+    return false;
   }
 
   ngOnInit() {
