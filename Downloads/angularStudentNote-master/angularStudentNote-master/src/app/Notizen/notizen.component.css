@@ -26,7 +26,7 @@ th {
 }
 
 td {
-  height: 40px;
+  min-height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -39,7 +39,7 @@ td input, td textarea {
   width: 100%;
   font-size: 18px;
   text-align: center;
-  min-height: 40px;
+  min-height: 100%;
 }
 
 td textarea {

@@ -8,9 +8,9 @@ import { LehrerComponent } from './lehrer/lehrer.component';
 import { SchuelerComponent } from './schueler/schueler.component';
 import { NotizenComponent } from './Notizen/notizen.component';
 import { MainComponent } from './main/main.component';
-import {DataService} from './services/dataService';
-import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { DataService } from './services/dataService';
+import { DashboardComponent } from './dashboard/dashboard.component'
+import { AutosizeModule } from 'angular2-autosize';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AutosizeModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
