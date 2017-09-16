@@ -44,6 +44,15 @@ export class DashboardComponent implements OnInit {
   showNotesOfStudent(studentId) {
     this.selectedStudentId = studentId;
     this.notesOfSelectedStudent = this.notes.filter(note => note.studentId === studentId);
+    this.notesOfSelectedStudent.sort((n1: Note, n2: Note) => {
+      if (n1.timestamp > n2.timestamp) {
+        return -1;
+      }
+      if (n1.timestamp < n2.timestamp) {
+        return 1;
+      }
+      return 0;
+    });
   }
 
   addNote(inputText) {
