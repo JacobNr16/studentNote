@@ -54,6 +54,11 @@ export class DataService {
     this.save();
   }
 
+  public addNote(note) {
+    this.notes.push(note);
+    this.save();
+  }
+
   public addTeacher(teacher) {
     this.teachers.push(teacher);
     this.save();
@@ -182,6 +187,11 @@ export class DataService {
       }
     }
     return index;
+  }
+
+  public getTeacherById(id: number) {
+    const teacher = this.teachers.find(x => x.id === id);
+    return teacher;
   }
 
   public save() {

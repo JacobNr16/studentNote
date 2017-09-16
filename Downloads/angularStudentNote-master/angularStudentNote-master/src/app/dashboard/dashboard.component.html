@@ -1,3 +1,33 @@
-<p>
-  dashboard works!
-</p>
+<div id="DivDashb">
+  <div id="DashLinks">
+
+    <h2>Meine Klassen:</h2>
+    <hr>
+    <div (click)="showStudentsOfClass(klasse.id)" *ngFor="let klasse of classesOfCurrentTeacher" class="DashboardMenu">
+      {{klasse.stufe}}
+    </div>
+
+  </div>
+  <div id="DashMitte">
+    <h2> Schüler der Klasse: </h2>
+    <hr>
+    <div (click)="showNotesOfStudent(student.id)" *ngFor="let student of studentsOfSelectedClass" class="DashboardSchueler">
+      {{student.firstName}} {{student.lastName}}
+    </div>
+  </div>
+
+  <div id="DashRechts">
+    <h2> Notizen von XYZ </h2>
+    <hr>
+    <div class="noteForm">
+      <div>
+        <textarea autosize placeholder="Notiz einfügen..." #inputText></textarea>
+      </div>
+      <input (click)="addNote(inputText)" type="image" src="/assets/res/addIcon.png" alt="Submit" height=42 width=42   />
+    </div>
+    <div *ngFor="let note of notesOfSelectedStudent | slice:0:5" class="DashboardNotiz">
+      {{note.text}}
+    </div>
+  </div>
+</div>
+

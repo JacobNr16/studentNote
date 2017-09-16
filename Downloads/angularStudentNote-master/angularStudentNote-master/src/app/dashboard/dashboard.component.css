@@ -1,0 +1,117 @@
+.DashboardMenu {
+  height: 80px;
+  line-height: 80px;
+  min-width: 80px;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-style: solid;
+  border-width: 3px;
+  background-color: #F0F0F0;
+  border-color: #BEBEBE;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 1258px) {
+  .DashboardMenu {
+    width: 45%;
+  }
+}
+
+@media screen and (min-width: 1259px) {
+  .DashboardMenu {
+    width: 30%;
+  }
+}
+
+  .DashboardMenu:hover {
+  cursor: pointer;
+  background-color: #BEBEBE;
+}
+
+.DashboardSchueler {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  height: 40px;
+  line-height: 40px;
+  border-style: solid;
+  border-width: 3px;
+  background-color: #F0F0F0;
+  border-color: #BEBEBE;
+  vertical-align: middle;
+}
+
+.DashboardNotiz {
+  margin-left: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  min-height: 40px;
+  line-height: 40px;
+  border-style: solid;
+  border-width: 3px;
+  background-color: #F0F0F0;
+  border-color: #BEBEBE;
+  vertical-align: middle;
+}
+
+.DashboardNotiz:hover {
+  background-color: #BEBEBE;
+}
+
+.DashboardSchueler:hover {
+  cursor: pointer;
+  background-color: #BEBEBE;
+}
+
+#DivDashb {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+#DashLinks{
+  width: 33.33%;
+  float: left;
+}
+
+#DashMitte{
+  width: 33.33%;
+  float: left;
+}
+
+#DashRechts{
+  width: 33.33%;
+  float: left;
+}
+
+.clearDiv {
+  clear: both;
+}
+
+
+.noteForm {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+.noteForm div {
+  padding-right: 55px;
+}
+
+.noteForm div textarea {
+  float: left;
+  width: 100%;
+  border-radius: 4px;
+  vertical-align: top;
+  resize: none;
+}
+
+.noteForm input {
+  float: right;
+}
