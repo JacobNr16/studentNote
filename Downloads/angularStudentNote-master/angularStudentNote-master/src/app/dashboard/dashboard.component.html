@@ -1,23 +1,23 @@
 <div id="DivDashb">
   <div id="DashLinks">
 
-    <h2>Meine Klassen:</h2>
+    <h2>Meine Klassen</h2>
     <hr>
     <div (click)="showStudentsOfClass(klasse.id)" *ngFor="let klasse of classesOfCurrentTeacher" class="DashboardMenu">
       {{klasse.stufe}}
     </div>
 
   </div>
-  <div id="DashMitte">
-    <h2> Schüler der Klasse: </h2>
+  <div *ngIf="isClassSelected" id="DashMitte">
+    <h2>Schüler der Klasse {{ getClassName() }}</h2>
     <hr>
     <div (click)="showNotesOfStudent(student.id)" *ngFor="let student of studentsOfSelectedClass" class="DashboardSchueler">
       {{student.firstName}} {{student.lastName}}
     </div>
   </div>
 
-  <div id="DashRechts">
-    <h2> Notizen von XYZ </h2>
+  <div *ngIf="isStudentSelected" id="DashRechts">
+    <h2> Notizen von {{ getStudentName() }} </h2>
     <hr>
     <div class="noteForm">
       <div>

@@ -12,7 +12,13 @@
   border-radius: 5px;
 }
 
-@media screen and (max-width: 1258px) {
+@media screen and (max-width: 766px) {
+  .DashboardMenu {
+    width: 95%;
+  }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1258px) {
   .DashboardMenu {
     width: 45%;
   }

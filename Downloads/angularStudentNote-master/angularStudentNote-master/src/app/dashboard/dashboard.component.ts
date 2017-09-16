@@ -4,7 +4,6 @@ import {Student} from '../models/student';
 import {Teacher} from '../models/teacher';
 import {Class} from '../models/class';
 import {Note} from '../models/note';
-import {noAnnotationError} from "@angular/core/src/di/reflective_errors";
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +19,10 @@ export class DashboardComponent implements OnInit {
   studentsOfSelectedClass: Student[] = [];
   notesOfSelectedStudent: Note[] = [];
   currentTeacher: Teacher;
+  selectedClassId: number;
   selectedStudentId: number;
+  isClassSelected: boolean;
+  isStudentSelected: boolean;
 
   constructor(private dataService: DataService) {
     dataService.load();
@@ -29,6 +31,8 @@ export class DashboardComponent implements OnInit {
     this.notes = dataService.getNotes();
     const currentTeacherId = Number(sessionStorage.getItem('currentUser'));
     this.currentTeacher = dataService.getTeacherById(currentTeacherId);
+    this.isClassSelected = false;
+    this.isStudentSelected = false;
 
     this.loadClassOfCurrentTeacher();
   }
@@ -38,11 +42,14 @@ export class DashboardComponent implements OnInit {
   }
 
   public showStudentsOfClass(classId) {
+    this.selectedClassId = classId;
     this.studentsOfSelectedClass = this.students.filter(student => student.classID === classId);
+    this.isClassSelected = true;
   }
 
   showNotesOfStudent(studentId) {
     this.selectedStudentId = studentId;
+    this.isStudentSelected = true;
     this.notesOfSelectedStudent = this.notes.filter(note => note.studentId === studentId);
     this.notesOfSelectedStudent.sort((n1: Note, n2: Note) => {
       if (n1.timestamp > n2.timestamp) {
@@ -61,6 +68,15 @@ export class DashboardComponent implements OnInit {
     this.dataService.addNote(note);
     this.showNotesOfStudent(this.selectedStudentId);
     (<HTMLTextAreaElement> inputText).value = '';
+  }
+
+  getStudentName() {
+    const student = this.students.find(x => x.id === this.selectedStudentId);
+    return student.firstName + ' ' + student.lastName;
+  }
+
+  getClassName() {
+    return this.classes.find(x => x.id === this.selectedClassId).stufe;
   }
 
   ngOnInit() {
