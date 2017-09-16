@@ -6,13 +6,13 @@
   <form>
     <div>
       <img src="/assets/res/account_icon.png" height=32 width=32 />
-      <input type="text" name="identification" placeholder="Benutzername" align="top" #currentUser><br/>
+      <input type="text" placeholder="E-Mail..." align="top" #currentUser><br/>
     </div>
     <div>
       <img src="/assets/res/password_icon.png" height=32 width=32 />
-      <input type="password" name="password" placeholder="Passwort" #password><br/>
+      <input type="password" placeholder="Passwort..." #password><br/>
     </div>
-    <input (click)="onLogin(currentUser, password, $event)" type="submit" value="Login">
+    <input (click)="onLogin(currentUser, password, $event)" value="Login">
   </form>
 </div>
 
@@ -20,4 +20,5 @@
   <app-main></app-main>
 </ng-template>
 
+<div id="snackbarLogin">Ungültige E-Mail Addresse oder Passwort.</div>
 

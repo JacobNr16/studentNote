@@ -24,6 +24,15 @@ export class AppComponent implements OnInit {
         sessionStorage.setItem('currentUser', teacher.id.toString());
       }
     }
+    if (!this.isLoggedIn()) {
+      this.showSnackbar('snackbarLogin');
+    }
+  }
+
+  showSnackbar(elementId: string) {
+    const x = document.getElementById(elementId);
+    x.className = 'show';
+    setTimeout(function(){ x.className = x.className.replace('show', ''); }, 3000);
   }
 
   public isLoggedIn() {
