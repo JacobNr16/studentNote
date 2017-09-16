@@ -1,17 +1,17 @@
 <header>
   <div>
-    <a (click)="home(test)" #test>
+    <a [routerLink]="['/', 'dashboard']">
       <img class="logo" src="/assets/res/Logo_Dashboard.png" alt="bild1" width="554" height="230" />
     </a>
     <div class="logoutBox">
       <p>Dirk Saller</p>
       <a (click)="onLogout()" href="/"> <!-- Logout Link -->
-        <img src="/assets/res/login_icon.png" width="50" height="50" title="Logout" alt="Logout"/>
+        <img (click)="changePassword()" src="/assets/res/login_icon.png" width="50" height="50" title="Logout" alt="Logout"/>
       </a>
     </div>
   </div>
   <nav>
-    <li id="homeLi"><a [routerLink]="['/', 'dashboard']" (click)="home()">
+    <li id="homeLi"><a [routerLink]="['/', 'dashboard']">
       <img id="home" src="/assets/res/Home_White.png" #homeIcon/>
     </a></li>
     <li><a [routerLink]="['/', 'notizen']"> Notizen </a></li>

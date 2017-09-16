@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../services/dataService';
+import {SchuelerComponent} from "../schueler/schueler.component";
 
 @Component({
   selector: 'app-main',
@@ -14,14 +15,14 @@ export class MainComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-  }
-
   public onLogout() {
     sessionStorage.clear();
   }
 
-  home(test) {
-    //(<HTMLLinkElement> test).setA
+  changePassword() {
+
+  }
+
+  ngOnInit() {
   }
 }

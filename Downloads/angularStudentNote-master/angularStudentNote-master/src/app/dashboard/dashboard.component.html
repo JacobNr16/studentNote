@@ -1,16 +1,13 @@
 <div id="DivDashb">
 
-
-
   <div id="DashLinks">
-
     <h2>Meine Klassen</h2>
     <hr>
     <div (click)="showStudentsOfClass(klasse.id)" *ngFor="let klasse of classesOfCurrentTeacher" class="DashboardMenu">
       {{klasse.stufe}}
     </div>
-
   </div>
+
   <div *ngIf="isClassSelected" id="DashMitte">
     <h2>Schüler der Klasse {{ getClassName() }}</h2>
     <hr>
@@ -33,4 +30,5 @@
       {{note.text}}
     </div>
   </div>
+
 </div>
