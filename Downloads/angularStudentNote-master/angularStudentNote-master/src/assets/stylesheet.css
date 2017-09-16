@@ -68,8 +68,12 @@ header div {
   float: right;
 }
 
-#logoutBox p {
+.logoutBox p {
   margin-right: 10px;
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 50px;
 }
 /* Navigationsleite*/
 header nav {

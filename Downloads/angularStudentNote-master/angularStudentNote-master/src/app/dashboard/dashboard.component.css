@@ -30,7 +30,7 @@
   }
 }
 
-  .DashboardMenu:hover {
+.DashboardMenu:hover {
   cursor: pointer;
   background-color: #BEBEBE;
 }

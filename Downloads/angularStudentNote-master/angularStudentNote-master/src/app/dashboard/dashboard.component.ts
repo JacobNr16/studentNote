@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public showStudentsOfClass(classId) {
+    this.isStudentSelected = false;
     this.selectedClassId = classId;
     this.studentsOfSelectedClass = this.students.filter(student => student.classID === classId);
     this.isClassSelected = true;
@@ -50,16 +51,7 @@ export class DashboardComponent implements OnInit {
   showNotesOfStudent(studentId) {
     this.selectedStudentId = studentId;
     this.isStudentSelected = true;
-    this.notesOfSelectedStudent = this.notes.filter(note => note.studentId === studentId);
-    this.notesOfSelectedStudent.sort((n1: Note, n2: Note) => {
-      if (n1.timestamp > n2.timestamp) {
-        return -1;
-      }
-      if (n1.timestamp < n2.timestamp) {
-        return 1;
-      }
-      return 0;
-    });
+    this.notesOfSelectedStudent = this.dataService.getNotes().filter(note => note.studentId === studentId);
   }
 
   addNote(inputText) {

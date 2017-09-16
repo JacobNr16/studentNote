@@ -29,7 +29,16 @@ export class DataService {
   ];
 
   public getNotes() {
-    return this.notes;
+    const sortedNotes = this.notes.sort((n1: Note, n2: Note) => {
+      if (n1.timestamp > n2.timestamp) {
+        return -1;
+      }
+      if (n1.timestamp < n2.timestamp) {
+        return 1;
+      }
+      return 0;
+    });
+    return sortedNotes;
   }
 
   public getTeachers() {
