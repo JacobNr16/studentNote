@@ -3,13 +3,14 @@ import {Student} from '../models/student';
 import {Class} from '../models/class';
 import {Teacher} from '../models/teacher';
 import {Note} from '../models/note';
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Injectable()
 export class DataService {
 
   private teachers = [
-    new Teacher('Dirk', 'Saller', 'ds@web.de', 'test'),
-    new Teacher('Helmut', 'Neemann', 'hn@web.de', 'test')
+    new Teacher('Dirk', 'Saller', 'ds@web.de', Md5.hashStr('test').toString()),
+    new Teacher('Helmut', 'Neemann', 'hn@web.de', Md5.hashStr('test').toString())
   ];
   private classes = [
     new Class('INF16B', 'Angewandte Informatik', this.teachers[0].id)

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DataService} from '../services/dataService';
 import {Student} from '../models/student';
 import {Teacher} from '../models/teacher';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-notizen',
@@ -14,7 +15,7 @@ export class NotizenComponent implements OnInit {
   public students;
   public teachers;
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private router: Router) {
     dataService.load();
     this.notes = dataService.getNotes();
     this.students = dataService.getStudents();
@@ -55,6 +56,10 @@ export class NotizenComponent implements OnInit {
 
   deleteNote(noteId) {
     this.dataService.deleteNote(noteId);
+  }
+
+  reloadPage() {
+    this.router.navigateByUrl(this.router.url);
   }
 
   ngOnInit() {

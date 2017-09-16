@@ -6,13 +6,13 @@
   <form>
     <div>
       <img src="/assets/res/account_icon.png" height=32 width=32 />
-      <input type="text" name="identification" placeholder="Benutzername" align="top"><br/>
+      <input type="text" name="identification" placeholder="Benutzername" align="top" #currentUser><br/>
     </div>
     <div>
       <img src="/assets/res/password_icon.png" height=32 width=32 />
-      <input type="password" name="password" placeholder="Passwort"><br/>
+      <input type="password" name="password" placeholder="Passwort" #password><br/>
     </div>
-    <input (click)="onLogin()" type="submit" value="Login">
+    <input (click)="onLogin(currentUser, password, $event)" type="submit" value="Login">
   </form>
 </div>
 
