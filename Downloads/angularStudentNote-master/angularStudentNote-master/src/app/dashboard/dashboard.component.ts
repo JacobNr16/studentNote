@@ -14,7 +14,6 @@ export class DashboardComponent implements OnInit {
 
   students: Student[] = [];
   classes: Class[] = [];
-  notes: Note[] = [];
   classesOfCurrentTeacher: Class[] = [];
   studentsOfSelectedClass: Student[] = [];
   notesOfSelectedStudent: Note[] = [];
@@ -28,7 +27,6 @@ export class DashboardComponent implements OnInit {
     dataService.load();
     this.students = dataService.getStudents();
     this.classes = dataService.getClasses();
-    this.notes = dataService.getNotes();
     const currentTeacherId = Number(sessionStorage.getItem('currentUser'));
     this.currentTeacher = dataService.getTeacherById(currentTeacherId);
     this.isClassSelected = false;

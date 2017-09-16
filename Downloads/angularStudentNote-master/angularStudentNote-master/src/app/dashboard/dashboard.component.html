@@ -1,4 +1,7 @@
 <div id="DivDashb">
+
+
+
   <div id="DashLinks">
 
     <h2>Meine Klassen</h2>
@@ -25,6 +28,7 @@
       </div>
       <input (click)="addNote(inputText)" type="image" src="/assets/res/addIcon.png" alt="Submit" height=42 width=42   />
     </div>
+    <h3 *ngIf="notesOfSelectedStudent.length !== 0">Letzten 5 Notizen</h3>
     <div *ngFor="let note of notesOfSelectedStudent | slice:0:5" class="DashboardNotiz">
       {{note.text}}
     </div>
