@@ -1,7 +1,18 @@
 <div id="DivDashb">
 
+  <div id="DashHeader">
+    <div id="DashHeadLeft">
+      <h2>Meine Klassen</h2>
+    </div>
+    <div *ngIf="isClassSelected" id="DashHeadMiddle">
+      <h2>Schüler der Klasse {{ getClassName() }}</h2>
+    </div>
+    <div *ngIf="isStudentSelected" id="DashHeadRight">
+      <h2> Notizen von {{ getStudentName() }} </h2>
+    </div>
+  </div>
+
   <div id="DashLinks">
-    <h2>Meine Klassen</h2>
     <hr>
     <div (click)="showStudentsOfClass(klasse.id)" *ngFor="let klasse of classesOfCurrentTeacher" class="DashboardMenu">
       {{klasse.stufe}}
@@ -9,7 +20,6 @@
   </div>
 
   <div *ngIf="isClassSelected" id="DashMitte">
-    <h2>Schüler der Klasse {{ getClassName() }}</h2>
     <hr>
     <div (click)="showNotesOfStudent(student.id)" *ngFor="let student of studentsOfSelectedClass" class="DashboardSchueler">
       {{student.firstName}} {{student.lastName}}
@@ -17,7 +27,6 @@
   </div>
 
   <div *ngIf="isStudentSelected" id="DashRechts">
-    <h2> Notizen von {{ getStudentName() }} </h2>
     <hr>
     <div class="noteForm">
       <div>

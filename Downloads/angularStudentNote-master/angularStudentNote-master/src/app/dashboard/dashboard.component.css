@@ -77,25 +77,21 @@
   text-align: center;
 }
 
-#DashLinks{
+#DashLinks, #DashMitte, #DashRechts {
   width: 33.33%;
   float: left;
 }
 
-#DashMitte{
+
+#DashHeader {
+  width: 100%;
+  display: inline-block;
+}
+
+#DashHeadLeft, #DashHeadMiddle, #DashHeadRight {
   width: 33.33%;
   float: left;
 }
-
-#DashRechts{
-  width: 33.33%;
-  float: left;
-}
-
-.clearDiv {
-  clear: both;
-}
-
 
 .noteForm {
   display: inline-block;
