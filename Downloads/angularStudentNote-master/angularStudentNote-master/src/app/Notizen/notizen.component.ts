@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../services/dataService';
 import {Student} from '../models/student';
-import {Teacher} from '../models/teacher';
 import {Router} from '@angular/router';
 
 @Component({
@@ -15,7 +14,7 @@ export class NotizenComponent implements OnInit {
   public students;
   public teachers;
 
-  constructor(private dataService: DataService, private router: Router) {
+  constructor(private dataService: DataService) {
     dataService.load();
     this.notes = dataService.getNotes();
     this.students = dataService.getStudents();
@@ -27,11 +26,17 @@ export class NotizenComponent implements OnInit {
     return student.firstName + ' ' + student.lastName;
   }
 
-  editNote(noteId, inputNote) {
+  editNote(noteId, inputNote, inputTimestamp, inputTeacherName, inputStudentName, tableAction) {
     const index = this.getIndexOfNote(noteId);
     if (index != null) {
       this.notes[index].isEditable = true;
       (<HTMLTextAreaElement> inputNote).removeAttribute('readonly');
+
+      (<HTMLInputElement> inputNote).style.backgroundColor = '#ff3333';
+      (<HTMLInputElement> inputTimestamp).style.backgroundColor = '#ff3333';
+      (<HTMLInputElement> inputTeacherName).style.backgroundColor = '#ff3333';
+      (<HTMLInputElement> inputStudentName).style.backgroundColor = '#ff3333';
+      (<HTMLInputElement> tableAction).style.backgroundColor = '#ff3333';
     }
   }
 
@@ -44,22 +49,25 @@ export class NotizenComponent implements OnInit {
     return null;
   }
 
-  updateNote(inputNote, noteId) {
+  updateNote(inputNote, noteId, inputTimestamp, inputTeacherName, inputStudentName, tableAction) {
     const index = this.getIndexOfNote(noteId);
     if (index != null) {
       this.notes[index].isEditable = false;
       (<HTMLTextAreaElement> inputNote).setAttribute('readonly', 'readonly');
 
-      this.dataService.updateNote(noteId, (<HTMLTextAreaElement> inputNote).value)
+      (<HTMLInputElement> inputNote).style.backgroundColor = '';
+      (<HTMLInputElement> inputTimestamp).style.backgroundColor = '';
+      (<HTMLInputElement> inputTeacherName).style.backgroundColor = '';
+      (<HTMLInputElement> inputStudentName).style.backgroundColor = '';
+      (<HTMLInputElement> tableAction).style.backgroundColor = '';
+
+      this.dataService.updateNote(noteId, (<HTMLTextAreaElement> inputNote).value);
+      this.notes = this.dataService.getNotes();
     }
   }
 
   deleteNote(noteId) {
     this.dataService.deleteNote(noteId);
-  }
-
-  reloadPage() {
-    this.router.navigateByUrl(this.router.url);
   }
 
   ngOnInit() {

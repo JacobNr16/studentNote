@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../services/dataService';
 import {Student} from '../models/student';
-import {first} from "rxjs/operator/first";
 
 @Component({
   selector: 'app-schueler',
@@ -59,6 +58,11 @@ export class SchuelerComponent implements OnInit {
       (<HTMLInputElement> inputFirstName).removeAttribute('readonly');
       (<HTMLInputElement> inputLastName).removeAttribute('readonly');
       (<HTMLInputElement> inputClass).removeAttribute('disabled');
+
+      (<HTMLInputElement> inputFirstName).style.backgroundColor = '#ff3333';
+      (<HTMLInputElement> inputLastName).style.backgroundColor = '#ff3333';
+      (<HTMLInputElement> inputClass).style.backgroundColor = '#ff3333';
+      (<HTMLInputElement> tableAction).style.backgroundColor = '#ff3333';
     }
   }
 
@@ -77,6 +81,11 @@ export class SchuelerComponent implements OnInit {
       this.students[index].isEditable = false;
       (<HTMLInputElement> inputFirstName).setAttribute('readonly', 'readonly');
       (<HTMLInputElement> inputLastName).setAttribute('readonly', 'readonly');
+
+      (<HTMLInputElement> inputFirstName).style.backgroundColor = '';
+      (<HTMLInputElement> inputLastName).style.backgroundColor = '';
+      (<HTMLInputElement> inputClass).style.backgroundColor = '';
+      (<HTMLInputElement> tableAction).style.backgroundColor = '';
 
       const classIndex = (<HTMLSelectElement> inputClass).selectedIndex;
       this.dataService.updateStudent(studentId, (<HTMLInputElement> inputFirstName).value,

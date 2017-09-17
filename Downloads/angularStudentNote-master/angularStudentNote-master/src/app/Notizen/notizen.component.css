@@ -10,11 +10,11 @@ table, th, td {
   border: 1px solid black;
 }
 
-tr:not(:first-child):hover, tr:not(:first-child):hover input {
+tr:not(:first-child):hover, tr:not(:first-child):hover input, tr:not(:first-child):hover textarea {
   background-color: #BEBEBE;
 }
 
-tr:nth-child(even), tr:nth-child(even) input {
+tr:nth-child(even), tr:nth-child(even) input, tr:nth-child(even) textarea {
   background-color: #F0F0F0;
 }
 
@@ -26,12 +26,11 @@ th {
 }
 
 td {
-  min-height: 100%;
   margin: 0;
   padding: 0;
 }
 
-td input, td textarea {
+td textarea {
   display: block;
   padding: 0;
   margin: 0;
@@ -39,7 +38,17 @@ td input, td textarea {
   width: 100%;
   font-size: 18px;
   text-align: center;
-  min-height: 100%;
+}
+
+td input {
+  display: block;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 100%;
+  font-size: 18px;
+  text-align: center;
+  min-height: 44px;
 }
 
 td textarea {

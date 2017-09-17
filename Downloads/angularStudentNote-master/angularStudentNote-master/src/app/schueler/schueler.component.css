@@ -10,12 +10,16 @@ table, th, td {
   border: 1px solid black;
 }
 
-tr:not(:first-child):hover, tr:not(:first-child):hover input {
+tr:not(:first-child):hover, tr:not(:first-child):hover input, tr:not(:first-child):hover select {
   background-color: #BEBEBE;
 }
 
-tr:nth-child(even), tr:nth-child(even) input {
+tr:nth-child(even), tr:nth-child(even) input, tr:nth-child(even) select {
   background-color: #F0F0F0;
+}
+
+select {
+  border: none;
 }
 
 th {

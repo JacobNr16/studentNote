@@ -14,16 +14,17 @@
       <textarea autosize readonly value="{{ note.text }}" #inputNote></textarea>
     </td>
     <td>
-      {{ note.teacherName }}
+      <input readonly value="{{ note.teacherName }}" #inputTeacherName/>
     </td>
     <td>
-      {{ getNameOfStudent(note.studentId) }}
+      <input readonly value="{{ getNameOfStudent(note.studentId) }}" #inputStudentName/>
     </td>
     <td #tableAction>
-      <img *ngIf="!note.isEditable; else show_checkIcon" (click)="editNote(note.id, inputNote)" title="Bearbeiten" src="/assets/res/edit_icon.svg" height=32 width=32 />
+      <img *ngIf="!note.isEditable; else show_checkIcon" (click)="editNote(note.id, inputNote, inputTimestamp, inputTeacherName, inputStudentName, tableAction)" title="Bearbeiten" src="/assets/res/edit_icon.svg" height=32 width=32 />
       <ng-template #show_checkIcon>
-        <img (click)="updateNote(inputNote, note.id)" src="/assets/res/check_icon.png" title="Bestätigen" height=32 width=32 />
+        <img (click)="updateNote(inputNote, note.id, inputTimestamp, inputTeacherName, inputStudentName, tableAction)" src="/assets/res/check_icon.png" title="Bestätigen" height=32 width=32 />
       </ng-template>
       <img (click)="deleteNote(note.id)" src="/assets/res/delete_icon.png" title="Löschen" height=32 width=32 />
     </td>
   </tr>
+</table>

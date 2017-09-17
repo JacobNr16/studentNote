@@ -36,6 +36,11 @@ export class KlassenComponent implements OnInit {
       (<HTMLInputElement> inputStufe).removeAttribute('readonly');
       (<HTMLInputElement> inputFach).removeAttribute('readonly');
       (<HTMLInputElement> inputLehrer).removeAttribute('disabled');
+
+      (<HTMLInputElement> inputStufe).style.backgroundColor = '#ff3333';
+      (<HTMLInputElement> inputFach).style.backgroundColor = '#ff3333';
+      (<HTMLInputElement> inputLehrer).style.backgroundColor = '#ff3333';
+      (<HTMLInputElement> tableAction).style.backgroundColor = '#ff3333';
     }
   }
 
@@ -45,6 +50,11 @@ export class KlassenComponent implements OnInit {
       this.classes[index].isEditable = false;
       (<HTMLInputElement> inputStufe).setAttribute('readonly', 'readonly');
       (<HTMLInputElement> inputFach).setAttribute('readonly', 'readonly');
+
+      (<HTMLInputElement> inputStufe).style.backgroundColor = '';
+      (<HTMLInputElement> inputFach).style.backgroundColor = '';
+      (<HTMLInputElement> inputLehrer).style.backgroundColor = '';
+      (<HTMLInputElement> tableAction).style.backgroundColor = '';
 
       const teacherIndex = (<HTMLSelectElement> inputLehrer).selectedIndex;
       this.dataService.updateClass(classId, (<HTMLInputElement> inputStufe).value,

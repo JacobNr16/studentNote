@@ -119,6 +119,7 @@ export class LehrerComponent implements OnInit {
     (<HTMLInputElement> firstName).removeAttribute('readonly');
     (<HTMLInputElement> lastName).removeAttribute('readonly');
     (<HTMLInputElement> mail).removeAttribute('readonly');
+
     (<HTMLInputElement> firstName).style.backgroundColor = '#ff3333';
     (<HTMLInputElement> lastName).style.backgroundColor = '#ff3333';
     (<HTMLInputElement> mail).style.backgroundColor = '#ff3333';
